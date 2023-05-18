@@ -1,7 +1,5 @@
 import csv
 
-CSV = "C:/forpy/electronics-shop-project/src/items.csv"
-
 
 class Item:
     """
@@ -9,6 +7,7 @@ class Item:
     """
     pay_rate = 1.0
     all = []
+    CSV = "C:/forpy/electronics-shop-project/src/items.csv"
 
     def __init__(self, name: str, price: float, quantity: int) -> None:
         """
@@ -70,7 +69,7 @@ class Item:
         '''
         cls.all.clear()
         try:
-            with open(CSV, newline='') as csvfile:
+            with open(cls.CSV, newline='') as csvfile:
                 reader = csv.DictReader(csvfile)
                 for row in reader:
                     cls(row['name'], row['price'], row['quantity'])
