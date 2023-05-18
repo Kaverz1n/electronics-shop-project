@@ -1,5 +1,7 @@
 import csv
 
+import os
+
 
 class Item:
     """
@@ -7,7 +9,7 @@ class Item:
     """
     pay_rate = 1.0
     all = []
-    CSV = "C:/forpy/electronics-shop-project/src/items.csv"
+    CSV = os.path.abspath('../src/items.csv')
 
     def __init__(self, name: str, price: float, quantity: int) -> None:
         """
