@@ -53,11 +53,11 @@ def test_set_name(make_item, capsys):
 
     item.name = "NameNameNameNameName"
     output = capsys.readouterr()
-    assert output.out == "Длина названия товара не" \
+    assert output.out == "Длина названия товара не " \
                          "должна превышать 10 символов\n"
     item.name = ""
     output = capsys.readouterr()
-    assert output.out == "Длина названия должна иметь" \
+    assert output.out == "Длина названия должна иметь " \
                          "хотябы 1 символ\n"
 
 
