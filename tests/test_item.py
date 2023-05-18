@@ -68,7 +68,7 @@ def test_instantiate_from_csv(capsys):
     assert isinstance(Item.all[0], Item)
     assert str(Item.all[4]) == "Товар Клавиатура"
 
-    src.item.CSV = "NOT_FOUND"
+    Item.CSV = "NOT_FOUND"
     Item.instantiate_from_csv()
     output = capsys.readouterr()
     assert output.out == "Файл не найден\n"
