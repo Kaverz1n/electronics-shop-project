@@ -1,6 +1,5 @@
 import pytest
 
-import src.item
 from src.item import Item
 
 
@@ -41,11 +40,6 @@ def test_all(make_item):
         assert isinstance(i, object)
 
 
-def test_repr(make_item):
-    item = make_item
-    assert str(item) == "Товар Телевизор"
-
-
 def test_set_name(make_item, capsys):
     item = make_item
     item.name = "Name"
@@ -66,7 +60,7 @@ def test_instantiate_from_csv(capsys):
     Item.instantiate_from_csv()
     assert len(Item.all) == 5
     assert isinstance(Item.all[0], Item)
-    assert str(Item.all[4]) == "Товар Клавиатура"
+    assert str(Item.all[4]) == "Клавиатура"
 
     Item.CSV = "NOT_FOUND"
     Item.instantiate_from_csv()
@@ -79,3 +73,11 @@ def test_string_to_number():
     assert Item.string_to_number(string) == 343
 
 
+def test_repr(make_item):
+    item = make_item
+    assert repr(item) == "Item('Телевизор', 3000, 4)"
+
+
+def test_str(make_item):
+    item = make_item
+    assert str(item) == "Телевизор"
