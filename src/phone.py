@@ -2,7 +2,7 @@ from src.item import Item
 
 
 class Phone(Item):
-    def __init__(self, name: str, price: float, quantity: int, number_of_sim: int):
+    def __init__(self, name: str, price: float, quantity: int, number_of_sim: int) -> None:
         '''
         Создание экземпляра класса Phone
         :param name: Название товара.
@@ -13,7 +13,7 @@ class Phone(Item):
         super().__init__(name, price, quantity)
         self.__number_of_sim = self.__check_number_of_sim(number_of_sim)
 
-    def __add__(self, other):
+    def __add__(self, other) -> int:
         '''
         Складывает два обьекты, относящиеся к
         классу Phone или Item
@@ -21,10 +21,10 @@ class Phone(Item):
         if isinstance(other, Item):
             return self.quantity + other.quantity
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f'{self.__class__.__name__}{self.name, self.price, self.quantity, self.number_of_sim}'
 
-    def __check_number_of_sim(self, value):
+    def __check_number_of_sim(self, value) -> int:
         '''
         Проверяет кол-во поддерживаемых сим-карт:
         если число больше 0, то возвращает
@@ -36,7 +36,7 @@ class Phone(Item):
         return 1
 
     @property
-    def number_of_sim(self):
+    def number_of_sim(self) -> int:
         '''
         Возвращает кол-во поддерживаемых
         сим-карт
@@ -44,7 +44,7 @@ class Phone(Item):
         return self.__number_of_sim
 
     @number_of_sim.setter
-    def number_of_sim(self, value):
+    def number_of_sim(self, value) -> None:
         '''
         Устснавливает значение поддерживаемых
         сим-карт, проверяя является ли значение
