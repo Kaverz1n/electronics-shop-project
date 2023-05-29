@@ -34,7 +34,7 @@ class Item:
     def __add__(self, other):
         '''
         Складывает два обьекты, относящиеся к
-        классу Phone или Item
+        классу Item или его подклассам
         '''
         if isinstance(other, self.__class__):
             return self.quantity + other.quantity
