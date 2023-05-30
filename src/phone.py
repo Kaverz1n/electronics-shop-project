@@ -11,7 +11,7 @@ class Phone(Item):
         :param number_of_sim: Кол-во поддерживаемых сим-кард
         '''
         super().__init__(name, price, quantity)
-        self.__number_of_sim = self.__check_number_of_sim(number_of_sim)
+        self.number_of_sim = number_of_sim
 
     def __add__(self, other) -> int:
         '''
@@ -25,24 +25,13 @@ class Phone(Item):
         return f'{self.__class__.__name__}' \
                f'{self.name, self.price, self.quantity, self.number_of_sim}'
 
-    def __check_number_of_sim(self, value) -> int:
-        '''
-        Проверяет кол-во поддерживаемых сим-карт:
-        если число больше 0, то возвращает
-        целое значение данного числа, иначе
-        просто 1
-        '''
-        if value > 0:
-            return int(value)
-        return 1
-
     @property
     def number_of_sim(self) -> int:
         '''
         Возвращает кол-во поддерживаемых
         сим-карт
         '''
-        return self.__number_of_sim
+        return self._number_of_sim
 
     @number_of_sim.setter
     def number_of_sim(self, value) -> None:
@@ -53,7 +42,7 @@ class Phone(Item):
         целое от числа или 1, если значение окажется
         отрицательным
         '''
-        if value > 0:
-            self.__number_of_sim = value
+        if isinstance(value, int) and value > 0:
+            self._number_of_sim = int(value)
         else:
-            self.__number_of_sim = 1
+            raise ValueError('Количество физических SIM-карт должно быть целым числом больше нуля.')
