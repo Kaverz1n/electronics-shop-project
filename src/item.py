@@ -8,7 +8,7 @@ class Item:
     """
     pay_rate = 1.0
     all = []
-    CSV = os.path.abspath('../src/items.csv')
+    CSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'items.csv')
 
     def __init__(self, name: str, price: float, quantity: int) -> None:
         """
@@ -18,6 +18,7 @@ class Item:
         :param price: Цена за единицу товара.
         :param quantity: Количество товара в магазине.
         """
+        super().__init__()
         self.__name = name
         self.price = price
         self.quantity = quantity
@@ -26,10 +27,10 @@ class Item:
 
     def __repr__(self):
         return f'{self.__class__.__name__}' \
-               f'{self.name, self.price, self.quantity}'
+               f'{self.__name, self.price, self.quantity}'
 
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.__name}'
 
     def __add__(self, other):
         '''
