@@ -1,5 +1,5 @@
 from src.item import Item
-from src.MixinLang import MixinLang
+from src.mixin_lang import MixinLang
 
 
 class KeyBoard(Item, MixinLang):
