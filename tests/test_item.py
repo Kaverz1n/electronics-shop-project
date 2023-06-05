@@ -1,7 +1,9 @@
+import os.path
 import pytest
 
 from src.item import Item
 from src.phone import Phone
+from src.exceptions import InstantiateCSVError
 
 
 @pytest.fixture
@@ -56,7 +58,7 @@ def test_set_name(make_item, capsys):
                          "хотябы 1 символ\n"
 
 
-def test_instantiate_from_csv(capsys):
+def test_instantiate_from_csv():
     Item.all = []
     Item.instantiate_from_csv()
     assert len(Item.all) == 5
@@ -64,9 +66,13 @@ def test_instantiate_from_csv(capsys):
     assert str(Item.all[4]) == "Клавиатура"
 
     Item.CSV = "NOT_FOUND"
-    Item.instantiate_from_csv()
-    output = capsys.readouterr()
-    assert output.out == "Файл не найден\n"
+    with pytest.raises(FileNotFoundError):
+        Item.instantiate_from_csv()
+
+    Item.CSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test.csv')
+    with pytest.raises(InstantiateCSVError):
+        Item.instantiate_from_csv()
+
 
 
 def test_string_to_number():
